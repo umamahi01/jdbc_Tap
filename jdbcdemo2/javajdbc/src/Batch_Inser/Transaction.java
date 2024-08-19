@@ -37,7 +37,7 @@ public class Transaction {
             pstmt_s.setInt(1,amount);
             pstmt_s.setInt(2,s_uid);
             int x =pstmt_s.executeUpdate();
-            System.out.println(x+ " rows effected");
+            System.out.println(x+ " sending money");
 
 
             System.out.println("enter the receiver id:- ");
@@ -45,7 +45,7 @@ public class Transaction {
             pstmt_r.setInt(1,amount);
             pstmt_r.setInt(2, r_uid);
             x =pstmt_r.executeUpdate();
-            System.out.println(x+" rows effected");
+            System.out.println(x+"money recieved");
             System.out.println("enter pin:-");
             if(pin == sc.nextInt()){
                 con.commit();
@@ -62,6 +62,22 @@ public class Transaction {
                 e.printStackTrace();
         }
         finally{
+            try{
+                sc.close();
+                if(pstmt_s!= null){
+                    pstmt_s.close();
+                }
+                if(pstmt_r!=null){
+                    pstmt_r.close();
+                }
+                if(con!=null){
+                    con.close();
+                }
+               
+            }
+            catch(SQLException e){
+                    e.printStackTrace();
+            }
 
         }
     }
