@@ -1,7 +1,7 @@
 /*cloumns names and description of coulmn is only called as meta data */
 
 
-package Batch_Inser;
+package Batch_Insert;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.SQLException;

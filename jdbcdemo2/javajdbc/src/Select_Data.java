@@ -29,9 +29,9 @@ class Select_Data {
            
             while(set_Result.next()){
                 id=set_Result.getInt(1);
-            name = set_Result.getString(2);
-            department = set_Result.getString(3);
-            salary = set_Result.getInt(4);
+                name = set_Result.getString(2);
+                department = set_Result.getString(3);
+                salary = set_Result.getInt(4);
                 /* 1.way of displayig the data
                 System.out.println(set_Result.getInt(1)+" "+set_Result.getString(2)+" "+set_Result.getString(3)+" "+set_Result.getInt(4));
                */

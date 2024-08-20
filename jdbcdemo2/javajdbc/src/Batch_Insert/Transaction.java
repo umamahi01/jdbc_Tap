@@ -1,7 +1,7 @@
 
 /**transcation aof amount from one account to another account using ACID properties  */
 
-package Batch_Inser;
+package Batch_Insert;
 import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,7 +15,7 @@ public class Transaction {
     static Connection con =null;
     static PreparedStatement pstmt_s= null;
     static PreparedStatement pstmt_r= null;
-    static Scanner sc =new Scanner(System.in);
+    static Scanner sc =new Scanner(System.in); 
     public static void main(String[] args){
         
         try{
@@ -36,18 +36,18 @@ public class Transaction {
 
             pstmt_s.setInt(1,amount);
             pstmt_s.setInt(2,s_uid);
-            int x =pstmt_s.executeUpdate();
-            System.out.println(x+ " sending money");
+            int n1 =pstmt_s.executeUpdate();
+            System.out.println(n1+ " sending money");
 
 
             System.out.println("enter the receiver id:- ");
             int r_uid = sc.nextInt();
             pstmt_r.setInt(1,amount);
             pstmt_r.setInt(2, r_uid);
-            x =pstmt_r.executeUpdate();
-            System.out.println(x+"money recieved");
+           int  n2 =pstmt_r.executeUpdate();
+            System.out.println(n2+"money recieved");
             System.out.println("enter pin:-");
-            if(pin == sc.nextInt()){
+            if(pin == sc.nextInt()&& n1==1&& n2==1){
                 con.commit();
                 System.out.println("transaction successfull");
             }

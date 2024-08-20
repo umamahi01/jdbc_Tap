@@ -1,4 +1,4 @@
-package Batch_Inser;
+package Batch_Insert;
 
 /*batch update /inserting into database using peraperdStatemet _refernce .addBatch(); ==> add number of queries into batch 
     preapredStatement_reference.executeBatch(); ==> exceute the bactched Querirs;
