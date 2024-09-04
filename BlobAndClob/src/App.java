@@ -23,21 +23,24 @@ public class App {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbcexp","root","root");
+            con.setAutoCommit(false);
             pstmt = con.prepareStatement("update  employee set empImg =? where empid=?");
             System.out.print("enter the id");
-            pstmt.setInt(2,sc.nextInt());
-            // pstmt.setBlob(1,fir);
+            int id=sc.nextInt();
+            pstmt.setInt(2,id);
             pstmt.setBinaryStream(1,fir);
+           int x= pstmt.executeUpdate();
 
-            pstmt2= con.prepareStatement("update employee set empImg=? where empid=?");
+            pstmt2= con.prepareStatement("update employee set about=? where empid=?");
 
-            System.out.println("enter the id");
-            pstmt2.setInt(2,sc.nextInt());
-            pstmt2.setClob(1,fir2);
-
-             int x = pstmt.executeUpdate();
-             pstmt2.executeUpdate();
-             System.out.println(x+x>0?"succuess":"not updated");
+           
+            pstmt2.setInt(2,id);
+            pstmt2.setCharacterStream(1,fir2);
+           int y= pstmt2.executeUpdate();
+          
+               
+             System.out.println(x+x>0&&y>0?"succuess":"not updated");
+            con.commit();
 
 
 
@@ -45,7 +48,23 @@ public class App {
             
             e.printStackTrace();
         }
+        finally{
+            try{
+                if(pstmt2 != null){
+                    pstmt2.close();
+                }
+                if(pstmt != null){
+                    pstmt.close();
+                }
+                if(con != null){
+                    con.close();
+                }
+            }
+            catch(SQLException e){
+                    e.printStackTrace();
         
+            }
+        }
     }
     
 
